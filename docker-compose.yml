@@ -1,0 +1,22 @@
+version: '3'
+services:
+  service1:
+   image: mongo:latest
+   volumes:
+     - mongo-vol:/data/db
+   networks:
+     - bdnetwork
+  service2:
+   image: autenticacao:0.1
+   ports:
+     - "1919:1919"
+   networks:
+     - bdnetwork
+     - ftpnetwork
+     - httpnetwork
+volumes:
+  mongo-vol:
+networks:
+  bdnetwork:
+  ftpnetwork:
+  httpnetwork:
