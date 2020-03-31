@@ -58,4 +58,4 @@ function verifyToken(req, res, next) {
 
 }
 
-app.listen(1919, () => console.log('Server started on port 1919'));
+app.listen(1920, () => console.log('Server started on port 1920'));

@@ -9,13 +9,22 @@ services:
   service2:
    image: autenticacao:0.1
    ports:
-     - "1919:1919"
+     - "1920:1920"
    networks:
      - bdnetwork
      - ftpnetwork
      - httpnetwork
+  service3:
+    image: servidorhttp:0.1
+    ports:
+      - "1919:1919"
+    networks:
+      - httpnetwork
+    volumes:
+      - files-vol:/data/files
 volumes:
   mongo-vol:
+  files-vol:
 networks:
   bdnetwork:
   ftpnetwork:
