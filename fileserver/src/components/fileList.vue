@@ -1,7 +1,7 @@
 <template>
   <v-card
     class="mx-auto mt-5 pa-5"
-    max-width="600"
+    max-width="800"
     tile
   >
     <v-file-input 
@@ -30,11 +30,23 @@
           <v-list-item-icon>
             <v-icon>mdi-book</v-icon>
           </v-list-item-icon>
-          <v-list-item-content @click="getFile(item)">
-            <v-list-item-title 
-              v-text="item.split('Z').length>1? item.split('Z')[1]: item">\
-            </v-list-item-title>
-          </v-list-item-content>
+          <v-row>
+            <v-col cols="8">
+              <v-list-item-title 
+                v-text="item.split('Z').length>1? item.split('Z')[1]: item">\
+              </v-list-item-title>
+            </v-col>
+            <v-col>
+              <v-btn rounded color="primary" @click="getFile(item)">
+                <v-icon>mdi-cloud-download</v-icon>
+              </v-btn>
+            </v-col>
+            <v-col>
+              <v-btn rounded color="red" @click="removeFile(item)">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
         </v-list-item>
       </v-list-item-group>
     </v-list>
@@ -53,6 +65,11 @@ import FormData from 'form-data'
       getFile(filename){
         var url = 'http://localhost:1919/uploads/' + filename
         window.open(url, '_blank');
+      },
+      removeFile(filename){
+        axios.delete('http://localhost:1919/file/' + filename)
+          .then(() => this.getFiles())
+          .catch(error => console.log('FAILURE!!!\n' + error));
       },
       addFile(){
         let data = new FormData();

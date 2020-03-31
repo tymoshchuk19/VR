@@ -3,10 +3,11 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const multer = require('multer');
 const cors = require('cors');
+const volumepath = '../data/files/';
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
-    cb(null, '../data/files/');                                  //change to volume directory
+    cb(null, volumepath);                                  //change to volume directory
   },
   filename: function(req, file, cb) {
     cb(null, new Date().toISOString() + file.originalname);
@@ -24,12 +25,18 @@ const corsOpts = {
 }
 
 const app = express();
-app.use('/uploads', express.static('../data/files/'));            //change to volume directory
+app.use('/uploads', express.static(volumepath));            //change to volume directory
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors(corsOpts))
 
 app.get('/files', (req, res) => {
-  var files = fs.readdirSync('../data/files/');                   //change to volume directory
+  var files = fs.readdirSync(volumepath);                   //change to volume directory
+  res.json(files);
+});
+
+app.delete('/file/:filename', (req, res) => {
+  fs.unlinkSync(volumepath + req.params.filename);
+  var files = fs.readdirSync(volumepath);                   //change to volume directory
   res.json(files);
 });
 
