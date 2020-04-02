@@ -15,6 +15,12 @@ Users.userById = idUser => {
         .exec();
 }
 
+Users.getUser = un => {
+    return UserModel
+        .findOne({ username: un })
+        .exec();
+}
+
 Users.newUser = user => {
     var novo = new UserModel(user);
     return novo.save();

@@ -2,14 +2,25 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const users = require('./controllers/users');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
-mongoose.connect('mongodb://tp2_service1_1:27017/dbTP2VR', {useNewUrlParser: true, useUnifiedTopology: true})
+
+mongoose.connect('mongodb://localhost:27017/dbTP2VR', {useNewUrlParser: true, useUnifiedTopology: true})
     .then(()=> console.log('Mongo ready: ' + mongoose.connection.readyState))
     .catch((erro) => console.log('Mongo: erro na conexão' + erro));
 
+
+const corsOpts = {
+  origin: '*',
+  credentials: true,
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Accept', 'Authorization', 'Cache-Control', 'Content-Type', 'DNT', 'If-Modified-Since', 'Keep-Alive', 'Origin', 'User-Agent', 'X-Requested-With', 'Content-Length']
+}
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cors(corsOpts))
 
 app.post('/register', (req, res) => {
   // Mock user
@@ -19,12 +30,20 @@ app.post('/register', (req, res) => {
 });
 
 app.post('/authenticate', (req, res) => {
-  jwt.sign({ user: req.body }, 'secretkey', { expiresIn: '60s' }, (err, token) => {
-    res.json({
-      token
-    });
+  users.getUser(req.body.username)
+    .then(user => {
+      if(user && user.password === req.body.password) {
+        jwt.sign({ user: req.body }, 'secretkey', { expiresIn: '300s' }, (err, token) => {
+          res.json({
+            token
+          });
+        });
+      } else {
+        res.jsonp({ msg: 'Credenciais inválidas' })  
+      }
+    })
+    .catch(err => res.jsonp(err));
   });
-});
 
 app.get('/authenticated', verifyToken, (req, res) => {  
   jwt.verify(req.token, 'secretkey', (err, authData) => {
