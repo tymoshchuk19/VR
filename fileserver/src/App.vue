@@ -6,6 +6,13 @@
       dark
     >
       Interface Web TP2 VR
+      <v-spacer></v-spacer>
+      <v-btn 
+        v-if="this.$store.state.token"
+        @click="logout()"
+      >
+        Log out
+      </v-btn>
     </v-app-bar>
 
     <v-content>
@@ -14,3 +21,13 @@
   </v-app>
 </template>
 
+<script>
+export default {
+  methods: {
+    logout(){
+      this.$store.state.token = null;
+      this.$router.push('/')
+    }
+  }
+}
+</script>

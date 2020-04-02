@@ -6,14 +6,14 @@ services:
       - mongo-vol:/data/db
     networks:
       - bdnetwork
-    ports:
-      - "27017:27017"
   service2:
     image: autenticacao:0.1
     networks:
       - bdnetwork
       - ftpnetwork
       - httpnetwork
+    ports:
+      - "1920:1920"
   service3:
     image: servidorhttp:0.1
     ports:

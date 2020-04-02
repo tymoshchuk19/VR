@@ -67,7 +67,11 @@ import FormData from 'form-data'
         window.open(url, '_blank');
       },
       removeFile(filename){
-        axios.delete('http://localhost:1919/file/' + filename)
+        axios.delete('http://localhost:1919/file/' + filename, {
+          headers: {
+            Authorization: this.$store.state.token 
+          }
+        })
           .then(() => this.getFiles())
           .catch(error => console.log('FAILURE!!!\n' + error));
       },
@@ -77,6 +81,7 @@ import FormData from 'form-data'
         axios.post('http://localhost:1919/file', data, {
           headers: {
             'Content-Type': `multipart/form-data;`,
+            Authorization: this.$store.state.token
           }
         })
           .then((response) => {
@@ -87,8 +92,12 @@ import FormData from 'form-data'
           });
       },
       getFiles(){
-        axios.get('http://localhost:1919/files')
-            .then( data => this.items = data.data);
+        axios.get('http://localhost:1919/files', {
+          headers: {
+            Authorization: this.$store.state.token 
+          }
+        })
+          .then( data => this.items = data.data);
       }
     },
     created() {
