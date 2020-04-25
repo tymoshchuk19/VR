@@ -22,6 +22,14 @@ services:
       - httpnetwork
     volumes:
       - files-vol:/data/files
+  service4:
+    image: servidorftp:0.1
+    ports:
+      - "21:21"
+    networks:
+      - ftpnetwork
+    volumes:
+      - files-vol:/volume
 volumes:
   mongo-vol:
   files-vol:
