@@ -1,0 +1,35 @@
+<__main__.MyAuthorizer object at 0x7fe7e0645d68>
+[I 2020-04-25 21:09:46] concurrency model: async
+[I 2020-04-25 21:09:46] masquerade (NAT) address: None
+[I 2020-04-25 21:09:46] passive ports: None
+[I 2020-04-25 21:09:46] >>> starting FTP server on 0.0.0.0:21, pid=33 <<<
+<__main__.MyAuthorizer object at 0x7fb17de70d68>
+[I 2020-04-25 21:17:32] concurrency model: async
+[I 2020-04-25 21:17:32] masquerade (NAT) address: None
+[I 2020-04-25 21:17:32] passive ports: None
+[I 2020-04-25 21:17:32] >>> starting FTP server on 0.0.0.0:21, pid=34 <<<
+[I 2020-04-25 21:17:45] 172.19.0.1:39530-[] FTP session opened (connect)
+[E 2020-04-25 21:17:57] unhandled exception in instance <MyHandler(id=140400298044776, addr='172.19.0.1:39530', user='ricardocanela')>
+    Traceback (most recent call last):
+      File "/usr/lib/python3.6/asyncore.py", line 83, in read
+        obj.handle_read_event()
+      File "/usr/lib/python3.6/asyncore.py", line 423, in handle_read_event
+        self.handle_read()
+      File "/usr/local/lib/python3.6/dist-packages/pyftpdlib/ioloop.py", line 920, in handle_read
+        asynchat.async_chat.handle_read(self)
+      File "/usr/lib/python3.6/asynchat.py", line 171, in handle_read
+        self.found_terminator()
+      File "/usr/local/lib/python3.6/dist-packages/pyftpdlib/handlers.py", line 1438, in found_terminator
+        self.pre_process_command(line, cmd, arg)
+      File "/usr/local/lib/python3.6/dist-packages/pyftpdlib/handlers.py", line 1487, in pre_process_command
+        self.process_command(cmd, arg)
+      File "/usr/local/lib/python3.6/dist-packages/pyftpdlib/handlers.py", line 1566, in process_command
+        method(*args, **kwargs)
+      File "/usr/local/lib/python3.6/dist-packages/pyftpdlib/handlers.py", line 2580, in ftp_PASS
+        self.authorizer.validate_authentication(self.username, line, self)
+      File "ftp-server.py", line 30, in validate_authentication
+        if r.json()['token']:
+    KeyError: 'token'
+[I 2020-04-25 21:17:57] 172.19.0.1:39530-[ricardocanela] FTP session closed (disconnect).
+[I 2020-04-25 21:18:08] 172.19.0.1:39538-[] FTP session opened (connect)
+[I 2020-04-25 21:18:15] 172.19.0.1:39538-[admin] USER 'admin' logged in.

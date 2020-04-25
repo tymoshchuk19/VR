@@ -41,6 +41,7 @@ authorizer = MyAuthorizer()
 
 handler = MyHandler
 handler.authorizer = authorizer
+handler.use_senfile = False
 print(authorizer)
 address = ('', 21)  # listen on every IP on my machine on port 21
 server = servers.FTPServer(address, handler)
