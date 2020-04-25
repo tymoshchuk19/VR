@@ -14,6 +14,8 @@ services:
       - httpnetwork
     ports:
       - "1920:1920"
+    volumes:
+      - ./logs:/logfile
   service3:
     image: servidorhttp:0.1
     ports:
@@ -22,6 +24,7 @@ services:
       - httpnetwork
     volumes:
       - files-vol:/data/files
+      - ./logs:/logfile
   service4:
     image: servidorftp:0.1
     ports:

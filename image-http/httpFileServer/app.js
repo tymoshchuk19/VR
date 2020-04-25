@@ -4,7 +4,7 @@ const fs = require('fs');
 const multer = require('multer');
 const cors = require('cors');
 const axios = require('axios');
-const volumepath = '../data/files/';
+const volumepath = '../../../data/files/';
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
