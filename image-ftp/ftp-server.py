@@ -4,6 +4,9 @@ from pyftpdlib.authorizers import DummyAuthorizer
 from pyftpdlib.authorizers import AuthenticationFailed
 import requests
 import json
+import sys
+
+sys.stdout = sys.stderr = open('../../logfile/ftplogfile.txt', 'a')
 
 autorizer = None
 
@@ -28,7 +31,7 @@ class MyAuthorizer(DummyAuthorizer):
             valid = True
         if valid:
             #create a new user with the token as the username and blanck password
-            self.add_user(username, ".", "./volume", perm='elradfmwM')
+            self.add_user(username, ".", "../../volume", perm='elradfmwM')
         else:
             raise AuthenticationFailed("Invalid Token")
             return False

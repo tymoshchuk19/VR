@@ -33,6 +33,7 @@ services:
       - ftpnetwork
     volumes:
       - files-vol:/volume
+      - ./logs:/logfile
 volumes:
   mongo-vol:
   files-vol:

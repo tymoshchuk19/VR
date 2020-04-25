@@ -1,8 +1,8 @@
 FROM ubuntu:latest
-COPY /ftp-server.py /ftp-server.py
 RUN apt-get update
+RUN apt-get -y install git
 RUN apt-get -y install python3.7
 RUN apt-get -y install python3-pip
-RUN pip3 install requests
-RUN pip3 install pyftpdlib
-ENTRYPOINT ["python3", "ftp-server.py"]
+COPY docker-entrypoint.sh /scripts/docker-entrypoint.sh
+RUN ["chmod", "+x", "/scripts/docker-entrypoint.sh"]
+ENTRYPOINT ["/scripts/docker-entrypoint.sh"]
