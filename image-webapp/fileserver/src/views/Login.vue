@@ -66,7 +66,7 @@ import qs from 'querystring'
     }),
     methods: {
       login(){
-        axios.post('http://localhost:1920/authenticate', qs.stringify({
+        axios.post('http://172.21.0.3:1920/authenticate', qs.stringify({
           username: this.username,
           password: this.password,
         }), {
