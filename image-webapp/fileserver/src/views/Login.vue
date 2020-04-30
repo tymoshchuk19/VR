@@ -40,7 +40,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <router-link to="/register">Register</router-link>
+                <router-link to="/registry">Register</router-link>
                 <v-btn 
                   class="ml-2"
                   color="primary" 
@@ -66,7 +66,8 @@ import qs from 'querystring'
     }),
     methods: {
       login(){
-        axios.post('http://172.21.0.3:1920/authenticate', qs.stringify({
+                    /* vr_service5_1 (Nginx) - mesma network, networks diferentes IP */
+        axios.post('http://172.21.0.4:1920/authenticate', qs.stringify({
           username: this.username,
           password: this.password,
         }), {

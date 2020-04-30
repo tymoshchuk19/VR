@@ -4,4 +4,4 @@
 [33m[nodemon] watching extensions: js,mjs,json[39m
 [32m[nodemon] starting `node app.js`[39m
 Server started on port 1920
-Mongo ready: 1
+Mongo: erro na conexãoMongooseServerSelectionError: getaddrinfo ENOTFOUND vr_service1_1 vr_service1_1:27017
