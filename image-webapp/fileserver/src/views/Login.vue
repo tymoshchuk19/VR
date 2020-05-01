@@ -40,7 +40,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <router-link to="/register">Register</router-link>
+                <router-link to="/registry">Register</router-link>
                 <v-btn 
                   class="ml-2"
                   color="primary" 
