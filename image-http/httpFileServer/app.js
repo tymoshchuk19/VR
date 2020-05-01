@@ -4,7 +4,7 @@ const fs = require('fs');
 const multer = require('multer');
 const cors = require('cors');
 const axios = require('axios');
-const volumepath = '../../../data/files/';
+const volumepath = '../volume/';
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -29,7 +29,7 @@ function verifyAuth(req, res, next){
   if(req.headers['authorization']) {
     // Set the token
     req.token = req.headers['authorization']
-    axios.get('http://vr_service2_1:1920/authenticated', {
+    axios.get('http://vr_service_auth_1:1920/authenticated', {
       headers: {
         Authorization: req.token 
       }

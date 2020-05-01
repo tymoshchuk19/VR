@@ -1,38 +1,46 @@
 version: '3'
 services:
-  service1:
+  service_mongo:
     image: mongo:latest
     volumes:
       - mongo-vol:/data/db
     networks:
       - bdnetwork
-  service2:
-    image: autenticacao:0.1
+  service_auth:
+    image: auth:latest
     networks:
       - bdnetwork
       - ftpnetwork
       - httpnetwork
-    ports:
-      - "1920:1920"
     volumes:
       - ./logs:/logfile
-  service3:
-    image: servidorhttp:0.1
-    ports:
-      - "1919:1919"
+  service_http:
+    image: http:latest
     networks:
       - httpnetwork
     volumes:
-      - files-vol:/data/files
+      - files-vol:/volume
       - ./logs:/logfile
-  service4:
-    image: servidorftp:0.1
+  service_ftp:
+    image: ftp:latest
     ports:
       - "21:21"
     networks:
       - ftpnetwork
     volumes:
       - files-vol:/volume
+      - ./logs:/logfile
+  service_proxy:
+    image: proxy:latest
+    ports:
+      - "80:80"
+    networks:
+      - httpnetwork
+  service_web:
+    image: webapp:latest
+    networks:
+      - httpnetwork 
+    volumes:
       - ./logs:/logfile
 volumes:
   mongo-vol:
