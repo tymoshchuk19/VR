@@ -11,9 +11,9 @@ services:
     ports:
       - "1920:1920"
     networks:
-      - bdnetwork
-      - ftpnetwork
-      - httpnetwork
+     - bdnetwork
+     - ftpnetwork
+     - httpnetwork
     volumes:
       - ./logs:/logfile
   service_http:
@@ -39,7 +39,7 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - httpnetwork
+      - httpnetwork 
 volumes:
   mongo-vol:
   files-vol:

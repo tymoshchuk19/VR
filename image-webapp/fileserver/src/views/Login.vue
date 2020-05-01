@@ -67,7 +67,7 @@ import qs from 'querystring'
     methods: {
       login(){
                     /* vr_service5_1 (Nginx) - mesma network, networks diferentes IP */
-        axios.post('http://172.21.0.4:1920/authenticate', qs.stringify({
+        axios.post('http://localhost:81/authenticate', qs.stringify({
           username: this.username,
           password: this.password,
         }), {

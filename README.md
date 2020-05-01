@@ -1,18 +1,21 @@
 # VR
 Trabalhos práticos de virtualização de redes. 
 
+Builds:
+
+Auth Server -> docker build image-auth -t autenticacao:0.1
+
+HTTP Server -> docker build image-http -t servidorhttp:0.1
+
+Web App -> docker build image-webapp -t webapp:0.1
+
+Nginx -> docker build image-proxy -t nginxproxy:0.1 (Não está no compose)
+
 Instalação:
 
-1 - docker build image-auth -t autenticacao:0.1
+- docker-compose up -d
 
-2 - docker build image-http -t servidorhttp:0.1
-
-3 - docker-compose up -d
-
-4 - cd fileserver && npm run serve 
 
 NOTAS :
 
-Para aceder ao front-end a partir do browser usar o IP 172.21.0.4 (pode demorar, sao alguns serviços....) , também pode-se usar o comando:
-
-curl http://172.21.0.4:8080
+Nginx consegue correr localmente com as rotas. A unica imagem que não dá conflitos a instalar o Nginx é a do CentOs. Problemas de DNS , Nginx não consegue comunicar com containers da mesma rede. 
