@@ -3,13 +3,13 @@ Trabalhos práticos de virtualização de redes.
 
 Builds:
 
-Auth Server -> docker build image-auth -t autenticacao:0.1
+Auth Server -> docker build image-auth -t autenticacao:latest
 
-HTTP Server -> docker build image-http -t servidorhttp:0.1
+HTTP Server -> docker build image-http -t servidorhttp:latest
 
-Web App -> docker build image-webapp -t webapp:0.1
+Web App -> docker build image-webapp -t webapp:latest
 
-Nginx -> docker build image-proxy -t nginxproxy:0.1 (Não está no compose)
+Nginx -> docker build image-proxy -t proxy:latest
 
 Instalação:
 
