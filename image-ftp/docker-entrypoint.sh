@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir logfile
 touch logfile/ftplogfile.txt
 cd ftp-server/
 pip3 install requests

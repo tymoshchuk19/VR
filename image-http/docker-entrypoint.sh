@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir logfile
 touch logfile/httplogfile.txt
 cd /httpFileServer/
 npm i
