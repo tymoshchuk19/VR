@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir volume
 mkdir logfile
 touch logfile/ftplogfile.txt
 cd ftp-server/

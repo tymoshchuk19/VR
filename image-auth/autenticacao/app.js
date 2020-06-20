@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 
-mongoose.connect('mongodb://vr_service_mongo_1:27017/dbTP2VR', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb://192.168.1.22:27017/dbTP2VR', {useNewUrlParser: true, useUnifiedTopology: true})
     .then(()=> console.log('Mongo ready: ' + mongoose.connection.readyState))
     .catch((erro) => console.log('Mongo: erro na conexão' + erro));
 

@@ -26,7 +26,7 @@ class MyAuthorizer(DummyAuthorizer):
           'username': username,
           'password': password,
         }
-        r = requests.post("http://vr_service_auth_1:1920/authenticate", data=d)
+        r = requests.post("http://192.168.1.17:1920/authenticate", data=d)
         if r.json()['token']:
             valid = True
         if valid:

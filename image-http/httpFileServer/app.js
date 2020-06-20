@@ -29,7 +29,7 @@ function verifyAuth(req, res, next){
   if(req.headers['authorization']) {
     // Set the token
     req.token = req.headers['authorization']
-    axios.get('http://vr_service_auth_1:1920/authenticated', {
+    axios.get('http://192.168.1.17:1920/authenticated', {
       headers: {
         Authorization: req.token 
       }
